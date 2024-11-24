@@ -14,7 +14,7 @@ load_dotenv()
 
 
 
-class ChatBot:
+class ChatBotLlama:
     def __init__(self):
         self.pdf_dir = 'data/pdfs'
         self.embedding_model = OllamaEmbeddings(model="nomic-embed-text")
@@ -81,7 +81,7 @@ class ChatBot:
         return memory
         
 
-class ChatBotOpenAI:
+class ChatBot:
     def __init__(self):
         self.pdf_dir = 'data/pdfs'
         self.embedding_model = OpenAIEmbeddings()
