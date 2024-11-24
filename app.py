@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request, jsonify
+from flask import Flask, render_template, request, jsonify
 from chatbot import ChatBot
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
@@ -7,7 +7,7 @@ from datetime import datetime
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mont.db'
 db = SQLAlchemy(app)
-# chatbot = ChatBot()
+chatbot = ChatBot()
 
 
 def msg_entry(**kwarg):
@@ -31,13 +31,13 @@ class message(db.Model):
 def index():
     return render_template('index.html')
 
-# @app.route('/get-response', methods = ['POST'])
-# def get_response_endpoint ():
-#     user_message = request.json.get('message')  
-#     msg_entry(content = user_message, sender = 'user')
-#     response = chatbot.get_response(user_message)  # Call your chatbot's function
-#     msg_entry(content = response, sender = 'system')
-#     return jsonify({'response': response})
+@app.route('/get-response', methods = ['POST'])
+def get_response_endpoint ():
+    user_message = request.json.get('message')  
+    msg_entry(content = user_message, sender = 'user')
+    response = chatbot.get_response(user_message)  # Call your chatbot's function
+    msg_entry(content = response, sender = 'system')
+    return jsonify({'response': response})
 
 
 

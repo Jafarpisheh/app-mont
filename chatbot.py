@@ -8,7 +8,6 @@ from langchain.schema import SystemMessage
 import os
 from dotenv import load_dotenv
 from langchain_ollama import OllamaEmbeddings
-from langchain_chroma import Chroma
 from langchain_ollama import ChatOllama
 load_dotenv()
 
